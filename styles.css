@@ -1,0 +1,75 @@
+:root {
+  --bg: #0c0a0f;
+  --card: #16131c;
+  --line: #2a2433;
+  --text: #f6f0ea;
+  --muted: #b7a8b0;
+  --gold: #e8b86d;
+  --rose: #e85d75;
+  --green: #3dba8b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Outfit, system-ui, sans-serif;
+  background: radial-gradient(1200px 600px at 10% -10%, #3a1a2a 0%, transparent 50%),
+              radial-gradient(900px 500px at 100% 0%, #1a2a28 0%, transparent 45%),
+              var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+a { color: var(--gold); }
+button, input, select, textarea { font: inherit; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; background: rgba(12,10,15,.85); backdrop-filter: blur(12px); z-index: 5;
+}
+.brand { font-weight: 800; letter-spacing: .3px; }
+.brand span { color: var(--gold); }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tabs button, .btn {
+  background: #221c28; color: var(--text); border: 1px solid var(--line);
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+}
+.tabs button.active, .btn.primary { background: var(--rose); border-color: transparent; }
+.btn.gold { background: var(--gold); color: #2a1a08; border: 0; }
+.hero { padding: 56px 20px 28px; text-align: center; }
+.hero h1 { font-size: clamp(32px, 6vw, 64px); line-height: 1.05; }
+.hero p { color: var(--muted); margin: 14px auto 24px; max-width: 560px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+}
+.photo {
+  height: 280px; background: #2a2230 center/cover no-repeat;
+  display: flex; align-items: flex-end; padding: 14px;
+}
+.photo strong { font-size: 22px; text-shadow: 0 2px 10px #000; }
+.meta { padding: 14px; color: var(--muted); font-size: 14px; }
+.meta h3 { color: var(--text); margin-bottom: 6px; }
+.row { display: flex; gap: 10px; padding: 0 14px 14px; }
+.row button { flex: 1; }
+.form { max-width: 480px; margin: 24px auto; background: var(--card); padding: 22px; border-radius: 20px; border: 1px solid var(--line); }
+.form h2 { margin-bottom: 14px; }
+.form label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
+.form input, .form select, .form textarea {
+  width: 100%; background: #0f0d12; color: var(--text); border: 1px solid var(--line);
+  border-radius: 12px; padding: 10px 12px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); cursor: pointer; font-size: 13px; }
+.chip.on { background: #3a2430; border-color: var(--rose); }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.chat { display: grid; grid-template-columns: 240px 1fr; min-height: 420px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.list { background: #120f16; border-right: 1px solid var(--line); }
+.list button { display: block; width: 100%; text-align: left; background: transparent; color: var(--text); border: 0; padding: 14px; cursor: pointer; }
+.list button.active { background: #241c28; }
+.pane { display: flex; flex-direction: column; }
+.msgs { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.bubble { max-width: 70%; padding: 8px 12px; border-radius: 14px; background: #241c28; }
+.bubble.me { align-self: flex-end; background: #3a2430; }
+.send { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); }
+.send input { flex: 1; background: #0f0d12; color: var(--text); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1e1824; border: 1px solid var(--line); padding: 10px 16px; border-radius: 12px; }
+@media (max-width: 700px) { .chat { grid-template-columns: 1fr; } .list { display: flex; overflow: auto; } }
