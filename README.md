@@ -1,42 +1,38 @@
 # Karibu Connect
 
-Location-based dating for people in Kenya. Match by county, distance, age, interests, and vibe.
+Location-based dating for people in Kenya.
 
-## Live site
+## Live
 
 https://karibu-connect.netlify.app
 
-GitHub: https://github.com/gachiesamuel14/karibu-connect
+Repo: https://github.com/gachiesamuel14/karibu-connect
 
-## What this version includes
+## Current features (frontend demo)
 
-Frontend product demo (data lives in the browser):
+- **Kenya-wide range** — default max distance 800 km (whole country). Tighten with the slider later.
+- **Photos** — minimum 3, maximum 12 on signup (device file picker + previews).
+- **Swipe** — drag card left (pass) / right (like), or use the buttons.
+- **Mutual match popup** — big “It’s a match!” modal with both faces.
+- **Status-style rings** — top bar of match photos (WhatsApp-style); tap to view gallery.
+- Multi-photo cards (tap photo to cycle).
+- County / mode / age / distance filters, GPS save, chat, report, premium placeholder.
 
-- Registration and login
-- Profile setup with county, tribe, religion, mode, and interests
-- Nearby discovery with filters + GPS permission
-- Like / pass and instant demo matches
-- In-browser chat
-- Report / safety flow
-- Premium placeholder (M-Pesa-ready copy)
+Data is stored in the browser (`localStorage`) until Supabase is connected.
 
-## What still needs a backend
+## Next: Supabase + keep Netlify host
 
-For a production app you still need:
+Suggested tables:
 
-- Auth (Supabase / Firebase / custom Node or Django)
-- PostgreSQL or MongoDB for users, likes, matches
-- Photo storage (Cloudinary / S3)
-- Realtime chat (Supabase Realtime, Firebase, or Socket.io)
-- Haversine / PostGIS distance queries
-- Push notifications
-- Safaricom Daraja for M-Pesa
+- `profiles` — id, name, age, county, town, tribe, religion, mode, bio, interests[], lat, lng, photos[]
+- `likes` — from_user, to_user, created_at
+- `matches` — user_a, user_b (unique pair)
+- `messages` — match_id, sender, body, created_at
+- `reports` — reporter, target, reason, details
 
-Netlify can host the frontend and serverless functions; a database still lives elsewhere (Supabase pairs well).
+Storage bucket for profile photos. Auth via email. Netlify keeps serving the static site; only the JS client talks to Supabase.
 
-## Local run
-
-Open `index.html` or:
+## Local
 
 ```bash
 npx serve .
