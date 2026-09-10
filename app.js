@@ -3,14 +3,14 @@ const INTERESTS = ["Afrobeats","Gospel","Hiking","Football","Tech","Farming","Ch
 const MODES = ["Open","Student","Professional","Church"];
 
 const PEOPLE = [
-  {id:"p1", name:"Amina", age:26, county:"Nairobi", town:"Westlands", tribe:"Swahili", religion:"Muslim", mode:"Professional", interests:["Travel","Cooking","Afrobeats"], bio:"Nairobi evenings, good food, no games.", dist:3, photo:"linear-gradient(160deg,#5a3048,#1a1220)"},
-  {id:"p2", name:"Brian", age:29, county:"Nairobi", town:"Kilimani", tribe:"Kikuyu", religion:"Christian", mode:"Professional", interests:["Gym","Tech","Football"], bio:"Building by day, football on Sundays.", dist:5, photo:"linear-gradient(160deg,#2a4050,#121820)"},
-  {id:"p3", name:"Wanjiku", age:24, county:"Kiambu", town:"Thika", tribe:"Kikuyu", religion:"Christian", mode:"Student", interests:["Books","Gospel","Hiking"], bio:"Campus life + quiet weekends.", dist:18, photo:"linear-gradient(160deg,#4a3058,#181220)"},
-  {id:"p4", name:"Otieno", age:31, county:"Kisumu", town:"Milimani", tribe:"Luo", religion:"Christian", mode:"Open", interests:["Football","Afrobeats","Travel"], bio:"Lakeside vibes. Come with stories.", dist:320, photo:"linear-gradient(160deg,#204838,#101810)"},
-  {id:"p5", name:"Fatma", age:27, county:"Mombasa", town:"Nyali", tribe:"Swahili", religion:"Muslim", mode:"Open", interests:["Travel","Cooking","Nightlife"], bio:"Coast energy. Swahili breakfasts.", dist:440, photo:"linear-gradient(160deg,#584028,#201810)"},
-  {id:"p6", name:"Mercy", age:23, county:"Nakuru", town:"Lanet", tribe:"Kalenjin", religion:"Christian", mode:"Church", interests:["Gospel","Hiking","Books"], bio:"Church girl who still loves a hike.", dist:150, photo:"linear-gradient(160deg,#403058,#181220)"},
-  {id:"p7", name:"Kevin", age:28, county:"Uasin Gishu", town:"Eldoret", tribe:"Kalenjin", religion:"Christian", mode:"Professional", interests:["Gym","Football","Tech"], bio:"Eldoret mornings. Serious about life.", dist:310, photo:"linear-gradient(160deg,#304848,#121818)"},
-  {id:"p8", name:"Stacy", age:25, county:"Nairobi", town:"South B", tribe:"Luhya", religion:"Christian", mode:"Open", interests:["Afrobeats","Nightlife","Travel"], bio:"City girl. Soft life, hard standards.", dist:7, photo:"linear-gradient(160deg,#583040,#201018)"}
+  {id:"p1", name:"Amina", age:26, county:"Nairobi", town:"Westlands", tribe:"Swahili", religion:"Muslim", mode:"Professional", interests:["Travel","Cooking","Afrobeats"], bio:"Nairobi evenings, good food, no games.", dist:3, img:"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=80"},
+  {id:"p2", name:"Brian", age:29, county:"Nairobi", town:"Kilimani", tribe:"Kikuyu", religion:"Christian", mode:"Professional", interests:["Gym","Tech","Football"], bio:"Building by day, football on Sundays.", dist:5, img:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80"},
+  {id:"p3", name:"Wanjiku", age:24, county:"Kiambu", town:"Thika", tribe:"Kikuyu", religion:"Christian", mode:"Student", interests:["Books","Gospel","Hiking"], bio:"Campus life + quiet weekends.", dist:18, img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80"},
+  {id:"p4", name:"Otieno", age:31, county:"Kisumu", town:"Milimani", tribe:"Luo", religion:"Christian", mode:"Open", interests:["Football","Afrobeats","Travel"], bio:"Lakeside vibes. Come with stories.", dist:320, img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"},
+  {id:"p5", name:"Fatma", age:27, county:"Mombasa", town:"Nyali", tribe:"Swahili", religion:"Muslim", mode:"Open", interests:["Travel","Cooking","Nightlife"], bio:"Coast energy. Swahili breakfasts.", dist:440, img:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"},
+  {id:"p6", name:"Mercy", age:23, county:"Nakuru", town:"Lanet", tribe:"Kalenjin", religion:"Christian", mode:"Church", interests:["Gospel","Hiking","Books"], bio:"Church girl who still loves a hike.", dist:150, img:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80"},
+  {id:"p7", name:"Kevin", age:28, county:"Uasin Gishu", town:"Eldoret", tribe:"Kalenjin", religion:"Christian", mode:"Professional", interests:["Gym","Football","Tech"], bio:"Eldoret mornings. Serious about life.", dist:310, img:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80"},
+  {id:"p8", name:"Stacy", age:25, county:"Nairobi", town:"South B", tribe:"Luhya", religion:"Christian", mode:"Open", interests:["Afrobeats","Nightlife","Travel"], bio:"City girl. Soft life, hard standards.", dist:7, img:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80"}
 ];
 
 const store = {
@@ -39,12 +39,13 @@ function setUser(u){ store.set("kc_user", u); render(); }
 
 function nav(){
   const u = user();
+  const n = matches().length;
   return `<header class="nav">
     <div class="brand">Karibu <span>Connect</span></div>
     <div class="tabs">
       ${u ? `
         <button class="${view==="discover"?"active":""}" data-go="discover">Discover</button>
-        <button class="${view==="matches"?"active":""}" data-go="matches">Matches</button>
+        <button class="${view==="matches"?"active":""}" data-go="matches">Matches${n?` (${n})`:""}</button>
         <button class="${view==="chat"?"active":""}" data-go="chat">Chat</button>
         <button class="${view==="profile"?"active":""}" data-go="profile">Profile</button>
         <button data-go="safety">Safety</button>
@@ -59,8 +60,9 @@ function nav(){
 
 function home(){
   return `<section class="hero">
+    <p class="eyebrow">Kenya · location-based</p>
     <h1>Find someone nearby in Kenya.</h1>
-    <p>Location-based matchmaking by county, town, and vibe — Nairobi to Mombasa, campus to church, professional to open.</p>
+    <p>Match by county, town, and vibe — Nairobi to Mombasa, campus to church, professional to open.</p>
     <button class="btn primary" data-go="register">Create your profile</button>
   </section>
   <div class="wrap grid">
@@ -101,6 +103,10 @@ function registerForm(isLogin=false){
   </form>`;
 }
 
+function photoStyle(p){
+  return p.img ? `background-image:url('${p.img}')` : `background-image:linear-gradient(160deg,#3a2430,#121018)`;
+}
+
 function discover(){
   const liked = likes();
   const passed = passes();
@@ -119,7 +125,7 @@ function discover(){
     </div>
     <div class="grid">${list.length? list.map(p=>`
       <article class="card">
-        <div class="photo" style="background-image:${p.photo}"><strong>${p.name}, ${p.age}</strong></div>
+        <div class="photo" style="${photoStyle(p)}"><strong>${p.name}, ${p.age}</strong></div>
         <div class="meta">
           <h3>${p.town}, ${p.county} · ${p.dist} km</h3>
           <p>${p.bio}</p>
@@ -139,7 +145,7 @@ function matchesView(){
   return `<div class="wrap"><h2 style="margin:12px 0">Matches</h2>
     <div class="grid">${ms.length? ms.map(p=>`
       <article class="card">
-        <div class="photo" style="background-image:${p.photo}"><strong>${p.name}</strong></div>
+        <div class="photo" style="${photoStyle(p)}"><strong>${p.name}</strong></div>
         <div class="meta">${p.town}, ${p.county}</div>
         <div class="row"><button class="btn primary" data-openchat="${p.id}">Chat</button></div>
       </article>`).join("") : `<p class="meta">Like someone to match. Demo matches happen when you like.</p>`}
